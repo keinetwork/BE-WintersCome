@@ -15,7 +15,7 @@ let accesscountObj = {
 		}
 		$.ajax({
 			type: 'POST',
-			url: 'http://127.0.0.1:8080/AccessCount',
+			url: '/AccessCount',
 			data: JSON.stringify(body),
 			contentType: "application/json; charset=utf-8",
 			async: false,
