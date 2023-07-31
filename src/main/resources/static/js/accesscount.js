@@ -10,18 +10,20 @@ let accesscountObj = {
 				publicIp=data.ip;
 			}
 		});
-		let body= {
-				ipAddr: publicIp
-		}
 		$.ajax({
 			type: 'POST',
 			url: '/AccessCount',
-			data: JSON.stringify(body),
 			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({
+				ipAddr: publicIp
+			}),
 			async: false,
 			success: function(data){				
 				console.log("accesscount: %o", data);
 				document.write("accesscount<br>"+JSON.stringify(data)+"<br><br>");
+			},
+			error : function(request, status, error) {
+			    console.log(error);
 			}
 		});
 	}
