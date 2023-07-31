@@ -33,3 +33,9 @@ spring:
     suffix: .html
     mode: HTML
     cache: false
+    enabled: true
+    
+#Swagger 설정
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

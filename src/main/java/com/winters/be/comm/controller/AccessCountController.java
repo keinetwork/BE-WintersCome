@@ -1,4 +1,4 @@
-package com.winters.be.controller;
+package com.winters.be.comm.controller;
 
 import java.util.Map;
 
