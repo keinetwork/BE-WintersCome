@@ -1,17 +1,14 @@
 package com.winters.be.service;
 
 
-
-import java.time.LocalDateTime;
-import java.util.Optional;
-
+import com.winters.be.db.entity.AccessCountEntity;
+import com.winters.be.db.repository.AccessCountRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import lombok.RequiredArgsConstructor;
-
-import com.winters.be.entity.AccessCount;
-import com.winters.be.repository.AccessCountRepository;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,9 +16,9 @@ import com.winters.be.repository.AccessCountRepository;
 public class AccessCountService {
 	private final AccessCountRepository accessCountRepository;
 	
-	public AccessCount getAccessCount(String ip) {
-		Optional<AccessCount> acOptional = accessCountRepository.findByIpAddr(ip);
-		AccessCount acEntity;	
+	public AccessCountEntity getAccessCount(String ip) {
+		Optional<AccessCountEntity> acOptional = accessCountRepository.findByIpAddr(ip);
+		AccessCountEntity acEntity;
 		if(acOptional.isPresent()) {
 			acEntity = acOptional.get();
 			acEntity.setTotalCount(acEntity.getTotalCount()+1);
@@ -43,7 +40,7 @@ public class AccessCountService {
 				acEntity.setDayCount(acEntity.getDayCount()+1);
 			}
 		}else {
-			acEntity = AccessCount.builder().ip(ip).total(1).year(1).month(1).day(1).build();	
+			acEntity = AccessCountEntity.builder().ip(ip).total(1).year(1).month(1).day(1).build();
 		}
 		
 		return accessCountRepository.save(acEntity);
