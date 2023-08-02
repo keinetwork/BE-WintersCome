@@ -11,7 +11,7 @@ import lombok.Setter;
 public class ResultDto<D> {
     @Schema(description = "결과코드", example = "SUCCESS", required = true)    
     private final String code;
-    @Schema(description = "메시지", example = "완벽하게 처리되었습니다.", required = true)
+    @Schema(description = "메시지", example = "완벽하게 처리되었습니다", required = true)
     private final String message;
     private final D data;
 
