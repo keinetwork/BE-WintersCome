@@ -21,19 +21,20 @@ public class AccessCountEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	@Column(length = 20, nullable = false, unique = true)
 	private String ipAddr;
-	private int totalCount;
-	private int yearCount;
-	private int monthCount;
-	private int dayCount;
+	private Integer totalCount;
+	private Integer yearCount;
+	private Integer monthCount;
+	private Integer dayCount;
 	@CreatedDate
-	@Column(updatable=false)
+	@Column(nullable = false, updatable=false)
 	private LocalDateTime createdAt;
-	@LastModifiedDate
+	@LastModifiedDate()
+	@Column(nullable = false)
 	private LocalDateTime updatedAt;
 	
-	private void setInfo(String ip, int total, int year, int month, int day) {
+	private void setInfo(String ip, Integer total, Integer year, Integer month, Integer day) {
 		this.ipAddr = ip;
 		this.totalCount = total;
 		this.yearCount = year;
@@ -42,12 +43,12 @@ public class AccessCountEntity {
 	}
 	
 	@Builder
-	private AccessCountEntity(Long id, String ip, int total, int year, int month, int day) {
+	private AccessCountEntity(Long id, String ip, Integer total, Integer year, Integer month, Integer day) {
 		this.id = id;
 		setInfo(ip, total, year, month, day);
 	}
 	@Builder
-	private AccessCountEntity(String ip, int total, int year, int month, int day) {
+	private AccessCountEntity(String ip, Integer total, Integer year, Integer month, Integer day) {
 		setInfo(ip, total, year, month, day);
 	}
 	
