@@ -12,7 +12,7 @@ let accesscountObj = {
 		});
 		$.ajax({
 			type: 'POST',
-			url: '/AccessCount',
+			url: '/comm/AccessCount',
 			contentType: "application/json; charset=utf-8",
 			data: JSON.stringify({
 				ipAddr: publicIp

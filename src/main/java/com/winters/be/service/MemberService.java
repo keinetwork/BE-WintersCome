@@ -29,6 +29,7 @@ public class MemberService {
                     .email(reqMember.getEmail())
                     .password(reqMember.getPassword())
                     .nickName(reqMember.getNickName())
+                    .role("USER")
                     .age(reqMember.getAge())
                     .phoneNumber(reqMember.getPhoneNumber())
                     .zipcode(reqMember.getZipcode())

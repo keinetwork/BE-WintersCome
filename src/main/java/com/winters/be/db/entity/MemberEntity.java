@@ -29,6 +29,8 @@ public class MemberEntity {
     private String password;
     @Column(length = 50, nullable = false)
     private String nickName;
+    @Column(length = 5, nullable = false)
+    private String role;
     private Integer age;
     @Column(length = 50)
     private String phoneNumber;
@@ -46,13 +48,14 @@ public class MemberEntity {
     private LocalDateTime updatedAt;
 
     @Builder
-    public MemberEntity(Long id, String email, String password, String nickName,
+    public MemberEntity(Long id, String email, String password, String nickName, String role,
             Integer age, String phoneNumber, String zipcode, String address, String addressDetail,
             LocalDateTime createAt, LocalDateTime updateAt) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.nickName = nickName;
+        this.role = role;
         this.age = age;
         this.phoneNumber = phoneNumber;
         this.zipcode = zipcode;
