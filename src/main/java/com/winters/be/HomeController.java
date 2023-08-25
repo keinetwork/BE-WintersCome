@@ -15,6 +15,11 @@ public class HomeController {
 	@RequestMapping({"","/"})
 	public String home() {
 		System.out.println("home: ");
-		return "/index.html";
+		return "/index";
+	}
+	@RequestMapping({"/test"})
+	public String test() {
+		System.out.println("test: ");
+		return "/test";
 	}
 }

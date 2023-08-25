@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web)->web.ignoring().antMatchers("/",
+        return (web)->web.ignoring().antMatchers("/","/test",
                 "/swagger-ui/**", "/api-docs/**",
                 "/favicon.ico", "/js/**",
                 "/comm/**", "/api/register"
