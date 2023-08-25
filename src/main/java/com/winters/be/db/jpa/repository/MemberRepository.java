@@ -1,6 +1,6 @@
-package com.winters.be.db.repository;
+package com.winters.be.db.jpa.repository;
 
-import com.winters.be.db.entity.MemberEntity;
+import com.winters.be.db.jpa.entity.MemberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

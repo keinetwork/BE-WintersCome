@@ -1,6 +1,6 @@
 package com.winters.be.cms.controller;
 
-import com.winters.be.db.entity.MemberEntity;
+import com.winters.be.db.jpa.entity.MemberEntity;
 import com.winters.be.dto.ResultDto;
 import com.winters.be.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;

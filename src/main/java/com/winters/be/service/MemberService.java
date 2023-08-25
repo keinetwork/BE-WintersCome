@@ -1,7 +1,7 @@
 package com.winters.be.service;
 
-import com.winters.be.db.entity.MemberEntity;
-import com.winters.be.db.repository.MemberRepository;
+import com.winters.be.db.jpa.entity.MemberEntity;
+import com.winters.be.db.jpa.repository.MemberRepository;
 import com.winters.be.dto.MemberRegistReq;
 import com.winters.be.dto.MemberRegistRes;
 import com.winters.be.dto.ResultDto;

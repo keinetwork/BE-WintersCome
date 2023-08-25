@@ -1,6 +1,6 @@
 package com.winters.be.comm.controller;
 
-import com.winters.be.db.entity.AccessCountEntity;
+import com.winters.be.db.jpa.entity.AccessCountEntity;
 import com.winters.be.service.AccessCountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

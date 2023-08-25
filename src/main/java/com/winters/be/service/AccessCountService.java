@@ -1,8 +1,8 @@
 package com.winters.be.service;
 
 
-import com.winters.be.db.entity.AccessCountEntity;
-import com.winters.be.db.repository.AccessCountRepository;
+import com.winters.be.db.jpa.entity.AccessCountEntity;
+import com.winters.be.db.jpa.repository.AccessCountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,6 +1,6 @@
 package com.winters.be.dto;
 
-import com.winters.be.db.entity.MemberEntity;
+import com.winters.be.db.jpa.entity.MemberEntity;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;

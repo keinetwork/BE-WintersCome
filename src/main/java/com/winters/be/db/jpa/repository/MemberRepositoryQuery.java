@@ -1,6 +1,6 @@
-package com.winters.be.db.repository;
+package com.winters.be.db.jpa.repository;
 
-import com.winters.be.db.entity.MemberEntity;
+import com.winters.be.db.jpa.entity.MemberEntity;
 
 import java.util.List;
 

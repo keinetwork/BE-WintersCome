@@ -1,6 +1,6 @@
 package com.winters.be.service;
 
-import com.winters.be.db.entity.MemberEntity;
+import com.winters.be.db.jpa.entity.MemberEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;

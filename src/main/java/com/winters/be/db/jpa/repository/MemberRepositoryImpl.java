@@ -1,12 +1,11 @@
-package com.winters.be.db.repository;
+package com.winters.be.db.jpa.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.winters.be.db.entity.MemberEntity;
-import com.winters.be.db.entity.QMemberEntity;
+import com.winters.be.db.jpa.entity.MemberEntity;
+import com.winters.be.db.jpa.entity.QMemberEntity;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-
 
 
 @RequiredArgsConstructor
@@ -16,8 +15,6 @@ public class MemberRepositoryImpl implements MemberRepositoryQuery {
 
     @Override
     public List<MemberEntity> selectAll() {
-
-
         return queryFactory.selectFrom(QMemberEntity.memberEntity)
                 .fetch();
     }

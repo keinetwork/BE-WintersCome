@@ -1,4 +1,4 @@
-package com.winters.be.db.entity;
+package com.winters.be.db.jpa.entity;
 
 import lombok.AccessLevel;
 import lombok.Builder;
