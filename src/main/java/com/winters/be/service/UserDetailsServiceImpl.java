@@ -14,8 +14,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private final MemberRepository memberRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        MemberEntity principal = memberRepository.findByEmail(username).get();
+    public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
+        MemberEntity principal = memberRepository.findByUserid(userid).get();
         return new UserDetailsImpl(principal);
     }
 }

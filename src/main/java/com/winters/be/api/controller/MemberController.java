@@ -11,15 +11,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 
+@Controller
 @Slf4j
-@RestController()
 @RequestMapping("/api")
 @RequiredArgsConstructor
 @Tag(name = "[@Tag] member", description = "회원관리")
@@ -38,8 +37,18 @@ public class MemberController {
             return ResponseEntity.status(HttpStatus.OK).body(resultDto);
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultDto);
-
         }
     }
+    @GetMapping("/login")
+    public String login() {
+        return "/page/login";
+    }
+
+    @PostMapping("/login")
+    public @ResponseBody String signin(@RequestParam HashMap<String, String> reqParam){
+        log.info(reqParam.toString());
+        return reqParam.toString();
+    }
+
 
 }

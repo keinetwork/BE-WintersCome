@@ -24,6 +24,8 @@ public class MemberEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 50, nullable = false, unique = true)
+    private String userid;
+    @Column(length = 50, nullable = false, unique = true)
     private String email;
     @Column(length = 50)
     private String password;

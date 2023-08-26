@@ -23,7 +23,7 @@ public class MemberService {
     }
 
     public ResultDto<MemberRegistRes> register(MemberRegistReq reqMember) {
-        Optional<MemberEntity> findMember = memberRepository.findByEmail(reqMember.getEmail());
+        Optional<MemberEntity> findMember = memberRepository.findByUserid(reqMember.getEmail());
         if( findMember.isEmpty() ) {
             MemberEntity saveMember = MemberEntity.builder()
                     .email(reqMember.getEmail())

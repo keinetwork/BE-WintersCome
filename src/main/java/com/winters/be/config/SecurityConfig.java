@@ -11,9 +11,9 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web)->web.ignoring().antMatchers("/","/test",
+        return (web)->web.ignoring().antMatchers("/","/test","/api/login",
                 "/swagger-ui/**", "/api-docs/**",
-                "/favicon.ico", "/js/**",
+                "/favicon.ico", "/webjars/**", "/js/**", "/assets/**", "/css/**",
                 "/comm/**", "/api/register"
         );
     }
@@ -25,7 +25,7 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .cors().disable()
                 .csrf().disable()
-                .formLogin().and()
+                .formLogin().loginPage("/api/login").successForwardUrl("/").and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/")
                 ;
         return http.build();
