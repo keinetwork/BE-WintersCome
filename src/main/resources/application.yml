@@ -10,19 +10,22 @@ server:
 # 데이터 소스 설정
 spring:
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:tcp://localhost/~/test
-    username: sa
-    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/winterscome
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:tcp://localhost/~/test
+    username: winterscome
+    password: comewinters
 
 # JPA 설정
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+#    database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl #테이블의 컬럼이름과 클래스의 변수 이름을 매핑해준다.
-      ddl-auto: create-drop
+      ddl-auto: create
       use-new-id-generator-mappings: false # id key 생성 알고리즘
     properties:
       hibernate:
