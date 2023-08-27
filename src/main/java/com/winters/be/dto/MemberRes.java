@@ -1,6 +1,7 @@
 package com.winters.be.dto;
 
 import com.winters.be.db.jpa.entity.MemberEntity;
+import com.winters.be.db.mybatis.vo.MemberVO;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
@@ -12,7 +13,10 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Schema(description = "멤버생성 응답정보")
-public class MemberRegistRes {
+public class MemberRes {
+    @NotNull(message="아이디는 필수 입력값입니다")
+    @Schema(description = "아이디", example = "stive", required = true)
+    private String userid;
     @NotNull(message="아이디는 필수 입력값입니다")
     @Schema(description = "닉네임", example = "stive", required = true)
     private String nickName;
@@ -21,15 +25,17 @@ public class MemberRegistRes {
     @Schema(description = "이메일", required = true)
     private String email;
     @Min(value=10, message="나이는 최소 10살 이상입니다")
-    private int age;
-    @Parameter(required = true)
+    private Integer age;
+    @Parameter
     private String phoneNumber;
-    @Parameter(required = false)
+    @Parameter
     private String zipcode;
     @Parameter
     private String address;
+    @Parameter
     private String addressDetail;
-    public MemberRegistRes(MemberEntity memberEntity) {
+    public MemberRes(MemberEntity memberEntity) {
+        this.userid = memberEntity.getUserid();
         this.email = memberEntity.getEmail();
         this.nickName = memberEntity.getNickName();
         this.age = memberEntity.getAge();
@@ -37,5 +43,15 @@ public class MemberRegistRes {
         this.zipcode = memberEntity.getZipcode();
         this.address = memberEntity.getAddress();
         this.addressDetail = memberEntity.getAddressDetail();
+    }
+    public MemberRes(MemberVO memberVO) {
+        this.userid = memberVO.getUserid();
+        this.email = memberVO.getEmail();
+        this.nickName = memberVO.getNickName();
+        this.age = memberVO.getAge();
+        this.phoneNumber = memberVO.getPhoneNumber();
+        this.zipcode = memberVO.getZipcode();
+        this.address = memberVO.getAddress();
+        this.addressDetail = memberVO.getAddressDetail();
     }
 }

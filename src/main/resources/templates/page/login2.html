@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Login page</title>
+</head>
+<body>
+<form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
+    <button sec:authorize="isAuthenticated()" class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
+    <button sec:authorize access=true th:href="@{/login}" class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit">Login</button>
+</form>
+
+<div sec:authorize="isAuthenticated()">
+    This content is only shown to authenticated users.
+</div>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    This content is only shown to administrators.
+</div>
+<div sec:authorize="hasRole('ROLE_USER')">
+    This content is only shown to users.
+</div>
+Logged user: <span sec:authentication="name">Bob</span>
+Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+
+<span sec:authorize="isAuthenticated()" style="margin-right:7px">반갑습니다. <span sec:authentication="name"></span>님!</span>
+<a class="btn btn-outline-info" sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a>
+<a class="btn btn-outline-info" sec:authorize="isAuthenticated()" href="/leave">로그아웃</a>
+
+<th:block sec:authorize="isAuthenticated()">
+<div align="right">
+    <!-- 스프링 시큐리티가 제공하는 Principal 객체는 담겨있는것이
+         아이디, 패스워드, 권한 3가지만 담겨있다 만약 다른 정보들도 같이담고싶으면 개인적으로 커스텀 마이징해야한다! -->
+    <h2><span sec:authentication="Principal.username"></span>님 환영합니다!</h2>
+    <h2><span sec:authentication="Principal.memberNo"></span>님 환영합니다!</h2>
+    <button onclick="location.href='/member/logout'">로그아웃</button>
+</div>
+</th:block>
+<!-- 권한이 없는 사용자 일시 -->
+<th:block sec:authorize="isAnonymous()">
+    <div align="right">
+        <h3>로그인이 필요한 서비스입니다.</h3>
+        <button onclick="location.href='/member/login'">로그인</button>
+        <button>회원가입</button>
+    </div>
+</th:block>
+<h1>Login page</h1>
+<p th:if="${loginError}" class="error">Wrong user or password</p>
+<form th:action="@{/auth/login.html}" method="post">
+    <label for="username">Username</label>:
+    <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
+    <label for="password">Password</label>:
+    <input type="password" id="password" name="password" /> <br />
+    <input type="submit" value="Log in" />
+</form>
+</body>
+</html>

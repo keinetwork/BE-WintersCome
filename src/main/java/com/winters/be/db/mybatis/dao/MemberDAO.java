@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Optional;
+
 @Mapper
 public interface MemberDAO {
     List<MemberVO> getMemberList();
@@ -13,8 +15,8 @@ public interface MemberDAO {
 
     @Select("SELECT * FROM member")
     List<MemberVO> findAll();
-    @Select("SELECT userid as userId FROM member WHERE userid = #{userid} and password =#{password}")
-    MemberVO findByUserIdAndPassword(@Param("userid") String userid, @Param("password") String password);
+    @Select("SELECT * FROM member WHERE userid=#{userid} and password=#{password}")
+    Optional<MemberVO> getLoginMember(@Param("userid") String userid, @Param("password") String password);
 
 //    @Insert("INSERT INTO user(name, part) VALUES(#{name}, #{part}")
 //    @Options(useGeneratedKeys = true, keyProperty = "userIdx")

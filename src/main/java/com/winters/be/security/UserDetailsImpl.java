@@ -1,23 +1,17 @@
-package com.winters.be.service;
+package com.winters.be.security;
 
 import com.winters.be.db.jpa.entity.MemberEntity;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-@Getter
-@Setter
+@RequiredArgsConstructor
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
-    private MemberEntity memberEntity;
-
-    public UserDetailsImpl(MemberEntity memberEntity) {
-        this.memberEntity = memberEntity;
-    }
+    private final MemberEntity memberEntity;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -34,7 +28,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
-        return "{noop}"+memberEntity.getPassword();
+        return "{noop}" + memberEntity.getPassword();
     }
 
     @Override

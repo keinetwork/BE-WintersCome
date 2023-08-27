@@ -39,7 +39,7 @@ spring:
 
 # 타임리프 설정
   thymeleaf:
-    prefix: classpath:templates/
+    prefix: classpath:/templates/
     check-template-location: true
     suffix: .html
     mode: HTML
@@ -74,10 +74,23 @@ log4j:
   logger:
     org.hibernate.SQL: debug  # just SQL
 
+
 logging:
   level:
+#    root: debug
     org:
       hibernate:
         type:
           descriptor:
             sql: trace #JDBC bind parameters
+    com:
+      winters:
+        be:
+          db:
+            mybatis:
+              dao: debug
+
+#    jdbc:
+#      sqlonly: off
+#      sqltiming: debug
+
