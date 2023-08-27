@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.winters.be.db.mybatis.dao.MemberDAO">
+<!--    <resultMap id="memberResult" type="com.winters.be.db.mybatis.vo.MemberVO" >-->
+<!--        <result property="userid" column="userid" />-->
+<!--        <result property="email" column="email" />-->
+<!--        <result property="password" column="password" />-->
+<!--        <result property="nickName" column="nickName" />-->
+<!--        <result property="role" column="role" />-->
+<!--        <result property="age" column="age" />-->
+<!--        <result property="phoneNumber" column="phoneNumber" />-->
+<!--        <result property="zipcode" column="zipcode" />-->
+<!--        <result property="address" column="address" />-->
+<!--        <result property="addressDetail" column="addressDetail" />-->
+<!--        <result property="createAt" column="createAt" />-->
+<!--        <result property="updateAt" column="updateAt" />-->
+<!--    </resultMap>-->
+    <insert id="insertMember">
+    </insert>
+    <update id="updateMember">
+    </update>
+    <delete id="deleteMember">
+    </delete>
+    <select id="getMemberList" resultType="com.winters.be.db.mybatis.vo.MemberVO">
+        <![CDATA[select * from Member]]>
+    </select>
+</mapper>

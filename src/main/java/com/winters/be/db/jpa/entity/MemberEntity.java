@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 @DynamicInsert
 @DynamicUpdate
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "member")
 public class MemberEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,10 +51,11 @@ public class MemberEntity {
     private LocalDateTime updatedAt;
 
     @Builder
-    public MemberEntity(Long id, String email, String password, String nickName, String role,
+    public MemberEntity(Long id, String userid, String email, String password, String nickName, String role,
             Integer age, String phoneNumber, String zipcode, String address, String addressDetail,
             LocalDateTime createAt, LocalDateTime updateAt) {
         this.id = id;
+        this.userid = userid;
         this.email = email;
         this.password = password;
         this.nickName = nickName;

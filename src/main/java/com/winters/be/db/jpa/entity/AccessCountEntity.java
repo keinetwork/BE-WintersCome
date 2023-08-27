@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicUpdate
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "accesscount")
 public class AccessCountEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

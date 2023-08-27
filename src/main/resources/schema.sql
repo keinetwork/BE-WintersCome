@@ -1,7 +1,7 @@
-drop table if exists AccessCountEntity;
-drop table if exists MemberEntity;
+drop table if exists AccessCount;
+drop table if exists Member;
 
-create table AccessCountEntity (
+create table AccessCount (
    id bigint not null auto_increment,
     ipAddr varchar(20) not null,
     dayCount integer,
@@ -12,10 +12,10 @@ create table AccessCountEntity (
     updatedAt datetime(6) not null,
     primary key (id)
 ) engine=InnoDB;
-alter table AccessCountEntity
-   add constraint UK_AccessCountEntity_ipAddr unique (ipAddr);
+alter table AccessCount
+   add constraint UK_AccessCount_ipAddr unique (ipAddr);
 
-create table MemberEntity (
+create table Member (
    id bigint not null auto_increment,
     userid varchar(50) not null,
     email varchar(50) not null,
@@ -31,7 +31,7 @@ create table MemberEntity (
     updatedAt datetime(6) not null,
     primary key (id)
 ) engine=InnoDB;
-alter table MemberEntity
-   add constraint UK_MemberEntity_userid unique (userid);
-alter table MemberEntity
-   add constraint UK_MemberEntity_email unique (email);
+alter table Member
+   add constraint UK_Member_userid unique (userid);
+alter table Member
+   add constraint UK_Member_email unique (email);

@@ -2,21 +2,25 @@ package com.winters.be.service;
 
 import com.winters.be.db.jpa.entity.MemberEntity;
 import com.winters.be.db.jpa.repository.MemberRepository;
+import com.winters.be.db.mybatis.dao.MemberDAO;
 import com.winters.be.dto.MemberRegistReq;
 import com.winters.be.dto.MemberRegistRes;
 import com.winters.be.dto.ResultDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final MemberDAO memberDAO;
 
     public List<MemberEntity> selectAll() {
        return memberRepository.selectAll();
@@ -41,5 +45,11 @@ public class MemberService {
         } else {
             return ResultDto.ofFail("이메일 중복");
         }
+    }
+
+    public boolean login(){
+//        log.info("MemberService:login(): "+memberRepository.selectAll().toString());
+        log.info("MemberService:login(): "+memberDAO.getMemberList().toString());
+        return true;
     }
 }
