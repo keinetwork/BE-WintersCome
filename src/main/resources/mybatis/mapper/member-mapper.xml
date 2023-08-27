@@ -16,13 +16,17 @@
 <!--        <result property="createAt" column="createAt" />-->
 <!--        <result property="updateAt" column="updateAt" />-->
 <!--    </resultMap>-->
-    <insert id="insertMember">
+    <insert id="userAdd">
+<!--        INSERT user (name, part) VALUES (#{name}, #{part})-->
     </insert>
+<!--    <insert id="userAdd" useGeneratedKeys="true" keyProperty="userIdx">-->
+<!--        INSERT user (name, part) VALUES (#{name}, #{part})-->
+<!--    </insert>-->
     <update id="updateMember">
     </update>
     <delete id="deleteMember">
     </delete>
-    <select id="getMemberList" resultType="com.winters.be.db.mybatis.vo.MemberVO">
+    <select id="getMemberList" resultType="MemberVO">
         <![CDATA[select * from Member]]>
     </select>
 </mapper>

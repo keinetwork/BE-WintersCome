@@ -11,7 +11,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/winterscome
+    url: jdbc:mysql://localhost:3306/winterscome?useUnicode=yes&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Seoul
     username: winterscome
     password: comewinters
 #    driver-class-name: org.h2.Driver
@@ -48,6 +48,7 @@ spring:
 
 # Mybatis
 mybatis.mapper-locations: classpath:mybatis/mapper/**/**.xml
+mybatis.type-aliases-package: com.winters.be.db.mybatis
 
 # Swagger springdoc-ui Configuration
 springdoc:
