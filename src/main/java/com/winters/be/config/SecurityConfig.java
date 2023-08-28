@@ -47,16 +47,16 @@ public class SecurityConfig {
 //        http.oauth2Login().userInfoEndpoint().userService()
         http
                 .formLogin()
-                .loginPage("/login.html").failureUrl("/login-error.html")
+                .loginPage("/page/login.html").failureUrl("/page/login-error.html")
                 .and()
-                .logout().logoutSuccessUrl("/index.html")
+                .logout().logoutUrl("/page/logout").logoutSuccessUrl("/page/index.html")
                 .and()
-                .authorizeRequests().mvcMatchers("/admin/**").hasRole("ADMIN")
-                                    .mvcMatchers("/user/**").hasRole("USER")
-                                    .mvcMatchers("/shared/**").hasAnyRole("USER","ADMIN")
+                .authorizeRequests().mvcMatchers("/page/admin/**").hasRole("ADMIN")
+                                    .mvcMatchers("/page/user/**").hasRole("USER")
+                                    .mvcMatchers("/page/shared/**").hasAnyRole("USER","ADMIN")
                 .and()
                 .exceptionHandling()
-                .accessDeniedPage("/403.html")
+                .accessDeniedPage("/page/403.html")
                 .and().cors().disable().csrf().disable()
         ;
         return http.build();

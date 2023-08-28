@@ -1,4 +1,4 @@
-package com.winters.be;
+package com.winters.be.page;
 
 import com.winters.be.dto.MemberReq;
 import lombok.RequiredArgsConstructor;
@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.unbescape.html.HtmlEscape;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,17 +17,19 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @RequiredArgsConstructor
 @Controller
+@RequestMapping("/page")
 public class MainController {
 
     /** Home page. */
     @GetMapping({"/", "/index.html"})
     public String index() {
-        return "/index";
+        return "/page/index";
     }
 
     /** User zone index. */
     @GetMapping("/user/index.html")
     public String userIndex() {
+        System.out.println("/page/user/index");
         return "/page/user/index";
     }
 
@@ -46,18 +49,18 @@ public class MainController {
     /** Login form. */
     @GetMapping("/login.html")
     public String login() {
-        return "/login";
+        return "/page/login";
     }
     @GetMapping("/signup.html")
     public String signup(MemberReq.Signup signup) {
-        return "/signup";
+        return "/page/signup";
     }
 
     /** Login form with error. */
     @GetMapping("/login-error.html")
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
-        return "/login";
+        return "/page/login";
     }
 
     /** Simulation of an exception. */
@@ -79,13 +82,13 @@ public class MainController {
         }
         errorMessage.append("</ul>");
         model.addAttribute("errorMessage", errorMessage.toString());
-        return "/error";
+        return "/page/error";
     }
 
     /** Error page. */
     @GetMapping("/403.html")
     public String forbidden() {
-        return "/403";
+        return "/page/403";
     }
 
 

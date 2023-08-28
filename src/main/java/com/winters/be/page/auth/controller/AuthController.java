@@ -1,4 +1,4 @@
-package com.winters.be.auth.controller;
+package com.winters.be.page.auth.controller;
 
 import com.winters.be.comm.WCUtil;
 import com.winters.be.dto.MemberReq;
@@ -22,7 +22,7 @@ import java.net.URI;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/auth")
+@RequestMapping("/page/auth")
 public class AuthController {
     //    private final Logger logger = LoggerFactory.getLogger("AuthController");
     private final AuthService authService;
@@ -61,7 +61,7 @@ public class AuthController {
             bindingResult.rejectValue("username", "duplication",
                     "아이디가 이미 존재 합니다.");
         }
-        return "redirect:/";
+        return "redirect:/page/";
     }
 
     @PostMapping("/register")
@@ -85,7 +85,7 @@ public class AuthController {
         ResultDto<MemberRes> resultDto = authService.signup(signup);
         if("SUCCESS".equals(resultDto.getCode())) {
             return ResponseEntity.status(HttpStatus.OK)
-                    .location(URI.create("redirect:/"))
+                    .location(URI.create("redirect:/page/"))
                     .body(resultDto);
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)

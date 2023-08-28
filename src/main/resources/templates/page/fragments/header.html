@@ -1,0 +1,11 @@
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--headerFragment 선언-->
+<nav th:fragment="headerFragment" class="sb-topnav navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <span sec:authorize="isAuthenticated()" style="margin-right:7px">반갑습니다.
+    <span sec:authentication="name"></span>님!</span>
+    <a sec:authorize="isAnonymous()" th:href="@{/page/login.html}" class="btn btn-outline-info">로그인</a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/page/logout}" class="btn btn-outline-info">로그아웃</a>
+</nav>
+</html>
