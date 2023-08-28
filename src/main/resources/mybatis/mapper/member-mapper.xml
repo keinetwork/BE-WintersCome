@@ -3,7 +3,7 @@
 
 <mapper namespace="com.winters.be.db.mybatis.dao.MemberDAO">
 <!--    <resultMap id="memberResult" type="com.winters.be.db.mybatis.vo.MemberVO" >-->
-<!--        <result property="userid" column="userid" />-->
+<!--        <result property="username" column="username" />-->
 <!--        <result property="email" column="email" />-->
 <!--        <result property="password" column="password" />-->
 <!--        <result property="nickName" column="nickName" />-->

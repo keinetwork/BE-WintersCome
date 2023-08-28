@@ -2,7 +2,6 @@ package com.winters.be.service;
 
 import com.winters.be.db.jpa.entity.MemberEntity;
 import com.winters.be.db.jpa.repository.MemberRepository;
-import com.winters.be.db.mybatis.dao.MemberDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,8 @@ import java.util.List;
 @Transactional
 public class MemberService {
     private final MemberRepository memberRepository;
-    private final MemberDAO memberDAO;
+//    private final MemberDAO memberDAO;
+
 
     public List<MemberEntity> selectAll() {
        return memberRepository.selectAll();

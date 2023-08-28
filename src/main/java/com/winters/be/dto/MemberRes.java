@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 public class MemberRes {
     @NotNull(message="아이디는 필수 입력값입니다")
     @Schema(description = "아이디", example = "stive", required = true)
-    private String userid;
+    private String username;
     @NotNull(message="아이디는 필수 입력값입니다")
     @Schema(description = "닉네임", example = "stive", required = true)
     private String nickName;
@@ -35,7 +35,7 @@ public class MemberRes {
     @Parameter
     private String addressDetail;
     public MemberRes(MemberEntity memberEntity) {
-        this.userid = memberEntity.getUserid();
+        this.username = memberEntity.getUsername();
         this.email = memberEntity.getEmail();
         this.nickName = memberEntity.getNickName();
         this.age = memberEntity.getAge();
@@ -45,7 +45,7 @@ public class MemberRes {
         this.addressDetail = memberEntity.getAddressDetail();
     }
     public MemberRes(MemberVO memberVO) {
-        this.userid = memberVO.getUserid();
+        this.username = memberVO.getUsername();
         this.email = memberVO.getEmail();
         this.nickName = memberVO.getNickName();
         this.age = memberVO.getAge();

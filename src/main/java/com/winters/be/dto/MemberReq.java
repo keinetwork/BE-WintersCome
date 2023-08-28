@@ -5,10 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.Schema.RequiredMode;
 import lombok.*;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 
 @Getter
 @Setter
@@ -18,7 +15,7 @@ import javax.validation.constraints.Pattern;
 public class MemberReq {
     @NotNull(message="아이디는 필수 입력값입니다")
     @Schema(description = "ID", example = "stive@gmail.com", maxLength = 50)
-    private String userid;
+    private String username;
     @NotNull
     @Schema(description = "패스워드", example = "qwerQW!@", maxLength = 50)
     private String password;
@@ -26,7 +23,6 @@ public class MemberReq {
     @NotNull(message="이메일 형식에 맞게 입력하세요")
     @Schema(description = "이메일", example = "stive@gmail.com", maxLength = 50)
     private String email;
-    @NotNull(message="닉네임 필수 입력값입니다")
     @Schema(description = "닉네임", example = "stive", maxLength = 50)
     private String nickName;
     @Min(value=10, message="나이는 최소 10살 이상입니다")
@@ -43,12 +39,29 @@ public class MemberReq {
     private String addressDetail;
 
     @Getter
+    @Setter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class Signup {
+        @Size(min=3, max=25)
+        @NotEmpty(message = "아이디는 필수항목입니다.")
+        private String username;
+        @NotEmpty(message = "비밀번호는 필수항목입니다.")
+        private String password;
+        @NotEmpty(message = "비밀번호 확인은 필수항목입니다.")
+        private String passwordConfim;
+        @NotEmpty(message = "이메일은 필수항목입니다.")
+        @Email
+        private String email;
+    }
+
+    @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class  Login {
-        @NotNull
-        private String id;
-        @NotNull
+        @NotEmpty(message = "아이디는 필수항목입니다.")
+        private String username;
+        @NotEmpty(message = "비밀번호는 필수항목입니다.")
         private String password;
     }
 }

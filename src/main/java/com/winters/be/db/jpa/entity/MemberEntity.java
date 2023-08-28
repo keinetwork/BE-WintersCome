@@ -25,12 +25,12 @@ public class MemberEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 50, nullable = false, unique = true)
-    private String userid;
+    private String username;
+    @Column(length = 100, nullable = false)
+    private String password;
     @Column(length = 50, nullable = false, unique = true)
     private String email;
     @Column(length = 50)
-    private String password;
-    @Column(length = 50, nullable = false)
     private String nickName;
     @Column(length = 5, nullable = false)
     private String role;
@@ -51,13 +51,13 @@ public class MemberEntity {
     private LocalDateTime updatedAt;
 
     @Builder
-    public MemberEntity(Long id, String userid, String email, String password, String nickName, String role,
-            Integer age, String phoneNumber, String zipcode, String address, String addressDetail,
-            LocalDateTime createAt, LocalDateTime updateAt) {
+    public MemberEntity(Long id, String username, String password, String email, String nickName, String role,
+                        Integer age, String phoneNumber, String zipcode, String address, String addressDetail,
+                        LocalDateTime createAt, LocalDateTime updateAt) {
         this.id = id;
-        this.userid = userid;
-        this.email = email;
+        this.username = username;
         this.password = password;
+        this.email = email;
         this.nickName = nickName;
         this.role = role;
         this.age = age;

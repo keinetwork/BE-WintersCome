@@ -15,8 +15,8 @@ public interface MemberDAO {
 
     @Select("SELECT * FROM member")
     List<MemberVO> findAll();
-    @Select("SELECT * FROM member WHERE userid=#{userid} and password=#{password}")
-    Optional<MemberVO> getLoginMember(@Param("userid") String userid, @Param("password") String password);
+    @Select("SELECT * FROM member WHERE username=#{username} and password=#{password}")
+    Optional<MemberVO> getLoginMember(@Param("username") String username, @Param("password") String password);
 
 //    @Insert("INSERT INTO user(name, part) VALUES(#{name}, #{part}")
 //    @Options(useGeneratedKeys = true, keyProperty = "userIdx")

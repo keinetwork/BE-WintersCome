@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberVO {
     private Long id;
-    private String userid;
+    private String username;
     private String email;
     private String password;
     private String nickName;
@@ -25,13 +25,13 @@ public class MemberVO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     @Builder
-    public MemberVO(Long id, String userid, String email, String password, String nickName, String role,
+    public MemberVO(Long id, String username, String password, String email, String nickName, String role,
                     Integer age, String phoneNumber, String zipcode, String address, String addressDetail,
                     LocalDateTime createAt, LocalDateTime updateAt) {
         this.id = id;
-        this.userid = userid;
-        this.email = email;
+        this.username = username;
         this.password = password;
+        this.email = email;
         this.nickName = nickName;
         this.role = role;
         this.age = age;

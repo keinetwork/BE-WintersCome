@@ -14,15 +14,17 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final MemberRepository memberRepository;
-//    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<MemberEntity> principal = memberRepository.findByUserid(username);
-//        if(principal.isEmpty()){
-//            throw new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
-//        }
-//        UserRole.ADMIN.get
+        Optional<MemberEntity> principal = memberRepository.findByUsername(username);
+        if(principal.isEmpty()){
+            throw new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
+        }
+//        MemberEntity member = principal.get();
+//        List<GrantedAuthority> authorities = new ArrayList<>();
+//        authorities.add(new SimpleGrantedAuthority("ROLE_"+member.getRole()));
+//        return new User(member.getUsername(), member.getPassword(), authorities);
         return new UserDetailsImpl(principal.get());
     }
 

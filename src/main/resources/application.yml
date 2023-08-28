@@ -27,7 +27,7 @@ spring:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl #테이블의 컬럼이름과 클래스의 변수 이름을 매핑해준다.
-      ddl-auto: create
+      ddl-auto: create-drop
       use-new-id-generator-mappings: false # id key 생성 알고리즘
     properties:
       hibernate:
@@ -39,12 +39,13 @@ spring:
 
 # 타임리프 설정
   thymeleaf:
-    prefix: classpath:/templates/
     check-template-location: true
     suffix: .html
     mode: HTML
     cache: false
-    enabled: true
+    prefix: file:src/main/resources/templates/
+
+
 
 # Mybatis
 mybatis.mapper-locations: classpath:mybatis/mapper/**/**.xml

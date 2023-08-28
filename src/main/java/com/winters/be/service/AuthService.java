@@ -9,6 +9,7 @@ import com.winters.be.dto.MemberRes;
 import com.winters.be.dto.ResultDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -18,26 +19,60 @@ import java.util.Optional;
 public class AuthService {
     private final MemberDAO memberDAO;
     private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
-    public ResultDto<MemberRes> register(MemberReq reqMember) {
-        Optional<MemberEntity> findMember = memberRepository.findByUserid(reqMember.getEmail());
-        if( findMember.isEmpty() ) {
-            MemberEntity saveMember = MemberEntity.builder()
-                    .email(reqMember.getEmail())
-                    .password(reqMember.getPassword())
-                    .nickName(reqMember.getNickName())
-                    .role("USER")
-                    .age(reqMember.getAge())
-                    .phoneNumber(reqMember.getPhoneNumber())
-                    .zipcode(reqMember.getZipcode())
-                    .address(reqMember.getAddress())
-                    .addressDetail(reqMember.getAddressDetail())
-                    .build();
-            memberRepository.save(saveMember);
-            return ResultDto.ofSuccess("회원가입 성공", new MemberRes(saveMember));
-        } else {
-            return ResultDto.ofFail("이메일 중복");
+    public ResultDto<MemberRes> register(MemberReq.Signup signup) {
+        try {
+            signup.setPassword(passwordEncoder.encode(signup.getPassword()));
+            Optional<MemberEntity> findMember = memberRepository.findByUsername(signup.getUsername());
+            if( findMember.isEmpty() ) {
+                MemberEntity saveMember = MemberEntity.builder()
+                        .username(signup.getUsername())
+                        .password(signup.getPassword())
+                        .email(signup.getEmail())
+                        .role("USER")
+    //                    .nickName(signup.getNickName())
+    //                    .age(signup.getAge())
+    //                    .phoneNumber(signup.getPhoneNumber())
+    //                    .zipcode(signup.getZipcode())
+    //                    .address(signup.getAddress())
+    //                    .addressDetail(signup.getAddressDetail())
+                        .build();
+                memberRepository.save(saveMember);
+                return ResultDto.ofSuccess("회원가입 성공", new MemberRes(saveMember));
+            } else {
+                return ResultDto.ofFail("아이디 중복");
+            }
+        }catch (Exception e) {
+            return ResultDto.ofFail(e.getMessage());
+        }
+    }
+
+    public ResultDto<MemberRes> signup(MemberReq.Signup signup) {
+        try {
+            signup.setPassword(passwordEncoder.encode(signup.getPassword()));
+            Optional<MemberEntity> findMember = memberRepository.findByUsername(signup.getUsername());
+            if( findMember.isEmpty() ) {
+                MemberEntity saveMember = MemberEntity.builder()
+                        .username(signup.getUsername())
+                        .password(signup.getPassword())
+                        .email(signup.getEmail())
+                        .role("USER")
+                        //                    .nickName(signup.getNickName())
+                        //                    .age(signup.getAge())
+                        //                    .phoneNumber(signup.getPhoneNumber())
+                        //                    .zipcode(signup.getZipcode())
+                        //                    .address(signup.getAddress())
+                        //                    .addressDetail(signup.getAddressDetail())
+                        .build();
+                memberRepository.save(saveMember);
+                return ResultDto.ofSuccess("회원가입 성공", new MemberRes(saveMember));
+            } else {
+                return ResultDto.ofFail("아이디 중복");
+            }
+        }catch (Exception e) {
+            return ResultDto.ofFail(e.getMessage());
         }
     }
 

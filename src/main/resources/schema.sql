@@ -17,10 +17,10 @@ alter table AccessCount
 
 create table Member (
    id bigint not null auto_increment,
-    userid varchar(50) not null,
+    username varchar(50) not null,
     email varchar(50) not null,
-    password varchar(50),
-    nickName varchar(50) not null,
+    password varchar(100) not null,
+    nickName varchar(50),
     role varchar(5) not null,
     age integer,
     phoneNumber varchar(50),
@@ -32,6 +32,6 @@ create table Member (
     primary key (id)
 ) engine=InnoDB;
 alter table Member
-   add constraint UK_Member_userid unique (userid);
+   add constraint UK_Member_username unique (username);
 alter table Member
    add constraint UK_Member_email unique (email);
