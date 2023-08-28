@@ -4,3 +4,5 @@
 -- mysql
 insert into Member(`userid`, `email`, `password`, `nickName`, `role`, `createdAt`, `updatedAt`)
     values('admin', 'admin', 'admin', 'ADMIN', 'ADMIN', now(), now());
+insert into Member(`userid`, `email`, `password`, `nickName`, `role`, `createdAt`, `updatedAt`)
+    values('user', 'user', 'user', 'USER', 'USER', now(), now());

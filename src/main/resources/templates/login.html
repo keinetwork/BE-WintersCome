@@ -1,23 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
 <head>
     <title>Login page</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="css/main.css" th:href="@{/css/main.css}" />
+    <!--index.html 고유 CSS 추가-->
+    <!--<link th:href="@{/css/page/home.css}" rel="stylesheet"></script>-->
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+    <!--index.html 고유 스크립트 추가-->
+    <!--<script th:src="@{/js/page/home.js}"></script>-->
 </head>
-<body>
-<h1>Login page</h1>
-<p>Example administrator: jim / demo</p>
-<p>Example user: bob / demo</p>
-<p>Example user and administrator: ted / demo</p>
-<p th:if="${loginError}" class="error">Wrong user or password</p>
-<form th:action="@{/login.html}" method="post">
-    <label for="username">Username</label>:
-    <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
-    <label for="password">Password</label>:
-    <input type="password" id="password" name="password" /> <br />
-    <input type="submit" value="Log in" />
-</form>
-<p><a href="../index.html" th:href="@{/index.html}">Back to home page</a></p>
-</body>
+
+<!--Content-->
+<div layout:fragment="content">
+    <div class="container">
+        <p th:if="${loginError}" class="error">Wrong user or password</p>
+        <form class="form-signin" method="post" th:action="@{/login.html}">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <p>
+                <input type="text" id="username" name="username" class="form-control" placeholder="ID" required autofocus>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </p>
+        </form>
+    </div>
+</div>
 </html>

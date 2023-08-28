@@ -34,7 +34,7 @@ public class SecurityConfig {
 //                .cors().disable()
 //                .csrf().disable()
 //                .formLogin()
-                //.loginPage("/auth/login.html").successForwardUrl("/").failureForwardUrl("/login-error").and()
+                //.loginPage("/auth/loginpage.html").successForwardUrl("/").failureForwardUrl("/login-error").and()
 //                .and().logout()
 //                .deleteCookies("JSESSIONID").invalidateHttpSession(true).logoutSuccessUrl("/")
 //                .and()
@@ -45,22 +45,24 @@ public class SecurityConfig {
 //        http.oauth2Login().userInfoEndpoint().userService()
         http
                 .formLogin()
-                .loginPage("/login.html")
-                .failureUrl("/login-error.html")
+                .loginPage("/login.html").failureUrl("/login-error.html")
                 .and()
-                .logout()
-                .logoutSuccessUrl("/index.html")
+                .logout().logoutSuccessUrl("/index.html")
                 .and()
-                .authorizeRequests()
-                .mvcMatchers("/admin/**").hasRole("ADMIN")
-                .mvcMatchers("/user/**").hasRole("USER")
-                .mvcMatchers("/shared/**").hasAnyRole("USER","ADMIN")
+                .authorizeRequests().mvcMatchers("/admin/**").hasRole("ADMIN")
+                                    .mvcMatchers("/user/**").hasRole("USER")
+                                    .mvcMatchers("/shared/**").hasAnyRole("USER","ADMIN")
                 .and()
                 .exceptionHandling()
-                .accessDeniedPage("/403.html");
+                .accessDeniedPage("/403.html")
+                .and().cors().disable().csrf().disable()
+        ;
         return http.build();
     }
 
+//    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+//        return authenticationConfiguration.getAuthenticationManager();
+//    }
 //    @Bean
 //    public PasswordEncoder passwordEncoder() {
 //        return new BCryptPasswordEncoder();
