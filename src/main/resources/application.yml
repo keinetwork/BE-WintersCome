@@ -46,9 +46,6 @@ spring:
     prefix: file:src/main/resources/templates/
 #    prefix: classpath:/templates/
 
-
-
-
 # Mybatis
 mybatis.mapper-locations: classpath:mybatis/mapper/**/**.xml
 mybatis.type-aliases-package: com.winters.be.db.mybatis

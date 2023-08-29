@@ -50,29 +50,25 @@ public class AuthService {
     }
 
     public ResultDto<MemberRes> signup(MemberReq.Signup signup) {
-        try {
-            signup.setPassword(passwordEncoder.encode(signup.getPassword()));
-            Optional<MemberEntity> findMember = memberRepository.findByUsername(signup.getUsername());
-            if( findMember.isEmpty() ) {
-                MemberEntity saveMember = MemberEntity.builder()
-                        .username(signup.getUsername())
-                        .password(signup.getPassword())
-                        .email(signup.getEmail())
-                        .role("USER")
-                        //                    .nickName(signup.getNickName())
-                        //                    .age(signup.getAge())
-                        //                    .phoneNumber(signup.getPhoneNumber())
-                        //                    .zipcode(signup.getZipcode())
-                        //                    .address(signup.getAddress())
-                        //                    .addressDetail(signup.getAddressDetail())
-                        .build();
-                memberRepository.save(saveMember);
-                return ResultDto.ofSuccess("회원가입 성공", new MemberRes(saveMember));
-            } else {
-                return ResultDto.ofFail("아이디 중복");
-            }
-        }catch (Exception e) {
-            return ResultDto.ofFail(e.getMessage());
+        signup.setPassword(passwordEncoder.encode(signup.getPassword()));
+        Optional<MemberEntity> findMember = memberRepository.findByUsername(signup.getUsername());
+        if( findMember.isEmpty() ) {
+            MemberEntity saveMember = MemberEntity.builder()
+                    .username(signup.getUsername())
+                    .password(signup.getPassword())
+                    .email(signup.getEmail())
+                    .role("USER")
+                    //                    .nickName(signup.getNickName())
+                    //                    .age(signup.getAge())
+                    //                    .phoneNumber(signup.getPhoneNumber())
+                    //                    .zipcode(signup.getZipcode())
+                    //                    .address(signup.getAddress())
+                    //                    .addressDetail(signup.getAddressDetail())
+                    .build();
+            memberRepository.save(saveMember);
+            return ResultDto.ofSuccess("회원가입 성공", new MemberRes(saveMember));
+        } else {
+            return ResultDto.ofFail("아이디 중복");
         }
     }
 

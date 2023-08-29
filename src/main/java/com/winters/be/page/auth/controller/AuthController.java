@@ -8,6 +8,7 @@ import com.winters.be.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -39,7 +40,7 @@ public class AuthController {
 //    @ApiResponse(responseCode = "404", description = "Not Found")
 //    public ResponseEntity<ResultDto<MemberRes>> signup(
     public String signup(
-            @Valid MemberReq.Signup signup, BindingResult bindingResult) throws Exception {
+            @Valid MemberReq.Signup signup, BindingResult bindingResult) {
         log.info(WCUtil.ConvertObjectToJson(signup));
         if(bindingResult.hasErrors()) {
             return "/page/auth/signup";
@@ -49,18 +50,23 @@ public class AuthController {
                     "2개의 패스워드가 일치하지 않습니다.");
             return "/page/auth/signup";
         }
-        ResultDto<MemberRes> resultDto = authService.signup(signup);
-        if("SUCCESS".equals(resultDto.getCode())) {
-//            return ResponseEntity.status(HttpStatus.OK)
-//                    .location(URI.create("redirect:/"))
-//                    .body(resultDto);
-        } else {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                    .location(URI.create("/page/auth/signup"))
-//                    .body(resultDto);
-            bindingResult.rejectValue("username", "duplication",
-                    "아이디가 이미 존재 합니다.");
+
+        try{
+            ResultDto<MemberRes> resultDto = authService.signup(signup);
+            if(!"SUCCESS".equals(resultDto.getCode())) {
+                bindingResult.reject(resultDto.getCode(), resultDto.getMessage());
+                return "/page/auth/signup";
+            }
+        } catch (DataIntegrityViolationException e){
+            e.printStackTrace();
+            bindingResult.reject("signupFailed", "이미 등록된 사용자 입니다.");
+            return "/page/auth/signup";
+        } catch (Exception e){
+            e.printStackTrace();
+            bindingResult.reject("signupFailed", e.getMessage());
+            return "/page/auth/signup";
         }
+
         return "redirect:/page/";
     }
 
