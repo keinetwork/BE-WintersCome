@@ -2,27 +2,57 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!--headerFragment 선언-->
-<nav th:fragment="headerFragment" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+<nav th:fragment="headerFragment" class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <div class="container-fluid">
-        <a th:href=@{"/"} class="navbar-brand">SBB</a>
-        <span sec:authorize="isAuthenticated()" style="margin-right:7px">반갑습니다.
-        <span sec:authentication="name"></span>님!</span>
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <!-- Navbar Brand-->
+        <a th:href="@{/page/dashboard.html}" class="navbar-brand">DMP</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+            <i class="fas fa-bars"></i>
         </button>
-        <div id="navbarSupportedContent" class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a sec:authorize="isAnonymous()" th:href="@{/page/auth/login.html}" class="btn btn-outline-info">로그인</a>
-                    <a sec:authorize="isAuthenticated()" th:href="@{/page/logout}" class="btn btn-outline-info">로그아웃</a>
+        <!--login message-->
+        <span sec:authorize="isAuthenticated()" class="navbar-brand" style="margin-right:7px">반갑습니다.
+        <span sec:authentication="name" class="navbar-brand" ></span>님!</span>
+        <!--Navbar Search-->
+        <form class="d-none d-md-inline-block from-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search for..." aria-level="Search for..."
+                aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+        <!--Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">Settings</a></li>
+                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+
+<!--        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"-->
+<!--                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div id="navbarSupportedContent" class="collapse navbar-collapse">-->
+<!--            <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+<!--                <li class="nav-item">-->
+                    <a sec:authorize="isAnonymous()" th:href="@{/page/auth/login.html}" class="btn btn-outline-info" style="width:85px">로그인</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/page/logout}" class="btn sm btn-outline-info" style="width:105px">로그아웃</a>
 <!--                    <form th:action="@{/page/logout}" method="post" style="display:inline">-->
 <!--                        <button sec:authorize="isAuthenticated()" type="submit" class="btn btn-outline-info">로그아웃</button>-->
 <!--                    </form>-->
-                    <a sec:authorize="isAnonymous()" th:href="@{/page/auth/signup.html}" class="btn btn-outline-info">회원가입</a>
-                </li>
-            </ul>
-        </div>
+                    <a sec:authorize="isAnonymous()" th:href="@{/page/auth/signup.html}" class="btn btn-outline-info" style="width:105px">회원가입</a>
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
     </div>
 </nav>
 </html>

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 public class MainController {
 
     /** Home page. */
-    @GetMapping({"/", "/index.html"})
+    @GetMapping({"/index.html"})
     public String index() {
         return "/page/index";
     }
@@ -73,5 +73,11 @@ public class MainController {
     @GetMapping("/403.html")
     public String forbidden() {
         return "/page/403";
+    }
+
+    /** Error page. */
+    @GetMapping({"/","/dashboard.html"})
+    public String dashboard() {
+        return "/page/dashboard";
     }
 }
