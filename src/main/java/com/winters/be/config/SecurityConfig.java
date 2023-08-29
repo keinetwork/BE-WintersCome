@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity  //스프링 시큐리티 필터가 스프링 필터체인에 등록 됩니다.
@@ -47,21 +48,26 @@ public class SecurityConfig {
 //        http.oauth2Login().userInfoEndpoint().userService()
         http
                 .formLogin()
-                .loginPage("/page/login.html").failureUrl("/page/login-error.html")
+                .loginPage("/page/auth/login.html")
+//                .failureUrl("/page/auth/login-error.html")
                 .and()
-                .logout().logoutUrl("/page/logout").logoutSuccessUrl("/page/index.html")
-                .and()
+                .logout((logout)-> logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/page/logout"))
+                        .logoutSuccessUrl("/page/index.html").invalidateHttpSession(true)
+                )
+//                .logout().logoutUrl("/page/logout").logoutSuccessUrl("/page/index.html").invalidateHttpSession(true)
+//                .and()
                 .authorizeRequests().mvcMatchers("/page/admin/**").hasRole("ADMIN")
                                     .mvcMatchers("/page/user/**").hasRole("USER")
                                     .mvcMatchers("/page/shared/**").hasAnyRole("USER","ADMIN")
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/page/403.html")
-                .and().cors().disable().csrf().disable()
+//                .and().cors().disable().csrf().disable()
         ;
         return http.build();
     }
-
+//    @Bean
 //    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
 //        return authenticationConfiguration.getAuthenticationManager();
 //    }

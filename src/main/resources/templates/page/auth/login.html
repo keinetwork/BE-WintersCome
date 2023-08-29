@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{page/layouts/default_layout}">
+<head>
+    <title>Login page</title>
+    <!--index.html 고유 CSS 추가-->
+    <!--<link th:href="@{/css/page/home.css}" rel="stylesheet"></script>-->
+    <!--index.html 고유 스크립트 추가-->
+    <!--<script th:src="@{/js/page/home.js}"></script>-->
+</head>
+<!--Content-->
+<div layout:fragment="content" class="container my-3">
+    <div sec:authorize="isAnonymous()">
+    <form th:action="@{/page/auth/login.html}" method="post" class="form-signin" >
+<!--        <p th:if="${loginError}" class="error">Wrong user or password</p>-->
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">사용자ID 또는 비밀번호를 확인해 주세요</div>
+        </div>
+        <div class="mb-3">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <div class="mb-3">
+                <label for="username" class="form-label">사용자ID</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="ID" required autofocus>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">비밀번호</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary">로그인</button>
+            <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+        </div>
+    </form>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <h2 class="form-signin-heading">Are you sign out?</h2>
+        <a th:href="@{/page/logout}" class="btn btn-lg btn-primary btn-block">로그아웃</a>
+    </div>
+</div>
+</html>

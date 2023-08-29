@@ -1,6 +1,5 @@
 package com.winters.be.page;
 
-import com.winters.be.dto.MemberReq;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -46,22 +45,7 @@ public class MainController {
         return "/page/shared/index";
     }
 
-    /** Login form. */
-    @GetMapping("/login.html")
-    public String login() {
-        return "/page/login";
-    }
-    @GetMapping("/signup.html")
-    public String signup(MemberReq.Signup signup) {
-        return "/page/signup";
-    }
 
-    /** Login form with error. */
-    @GetMapping("/login-error.html")
-    public String loginError(Model model) {
-        model.addAttribute("loginError", true);
-        return "/page/login";
-    }
 
     /** Simulation of an exception. */
     @GetMapping("/simulateError.html")
@@ -90,10 +74,4 @@ public class MainController {
     public String forbidden() {
         return "/page/403";
     }
-
-
-
-
-
-
 }

@@ -7,11 +7,18 @@
         <a th:href=@{"/"} class="navbar-brand">SBB</a>
         <span sec:authorize="isAuthenticated()" style="margin-right:7px">반갑습니다.
         <span sec:authentication="name"></span>님!</span>
-        <div id="navbarSupportedContent">
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a sec:authorize="isAnonymous()" th:href="@{/page/login.html}" class="btn btn-outline-info">로그인</a>
+                    <a sec:authorize="isAnonymous()" th:href="@{/page/auth/login.html}" class="btn btn-outline-info">로그인</a>
                     <a sec:authorize="isAuthenticated()" th:href="@{/page/logout}" class="btn btn-outline-info">로그아웃</a>
+<!--                    <form th:action="@{/page/logout}" method="post" style="display:inline">-->
+<!--                        <button sec:authorize="isAuthenticated()" type="submit" class="btn btn-outline-info">로그아웃</button>-->
+<!--                    </form>-->
                     <a sec:authorize="isAnonymous()" th:href="@{/page/auth/signup.html}" class="btn btn-outline-info">회원가입</a>
                 </li>
             </ul>
