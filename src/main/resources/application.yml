@@ -43,8 +43,12 @@ spring:
     suffix: .html
     mode: HTML
     cache: false
-    prefix: file:src/main/resources/templates/
-#    prefix: classpath:/templates/
+#    prefix: file:src/main/resources/templates/
+    prefix: classpath:/templates/
+  mvc:
+    hidden-method:
+      filter:
+        enabled=true: ## POST Method
 
 # Mybatis
 mybatis.mapper-locations: classpath:mybatis/mapper/**/**.xml
@@ -69,6 +73,7 @@ springdoc:
   cache:
     disabled: true
 
+
 #logging
 log4j:
   logger:
@@ -89,7 +94,11 @@ logging:
           db:
             mybatis:
               dao: debug
-
+#      example: # mybatis log
+#        mybatisPractice:
+#          mapper:
+#            UserMapper: trace
+#            PostMapper: debug
 #    jdbc:
 #      sqlonly: off
 #      sqltiming: debug

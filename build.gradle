@@ -36,7 +36,7 @@ dependencies {
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	implementation 'org.webjars:bootstrap:5.2.3'
 	implementation 'org.webjars.bower:jquery:3.7.0'
-	implementation 'org.webjars.npm:chart.js:4.3.3'
+	implementation 'org.webjars.npm:chart.js:2.8.0'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'

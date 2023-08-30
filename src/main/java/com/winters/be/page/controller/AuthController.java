@@ -1,6 +1,7 @@
 package com.winters.be.page.controller;
 
 import com.winters.be.comm.WCUtil;
+import com.winters.be.db.mybatis.vo.MembersVO;
 import com.winters.be.dto.MemberReq;
 import com.winters.be.dto.MemberRes;
 import com.winters.be.dto.ResultDto;
@@ -15,8 +16,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+
 
 @Slf4j
 @Controller
@@ -95,4 +98,24 @@ public class AuthController {
 //            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resultDto);
 //        }
 //    }
+    @GetMapping("/mySignup")
+    public @ResponseBody MembersVO mySignup(){
+        MembersVO vo = new MembersVO();
+        vo.setMb_id("cobook");
+        vo.setMb_nick("코북");
+        vo.setMb_pwd("1234");
+        vo.setMb_name("김코북");
+        vo.setMb_yy("2021");
+        vo.setMb_mm("10");
+        vo.setMb_dd("25");
+        vo.setMb_birthdate(vo.getMb_yy()+vo.getMb_mm()+vo.getMb_dd());
+        vo.setMb_sex("남자");
+        vo.setMb_email("test@gmail.com");
+        authService.myInsertMembers(vo);
+        return vo;
+    }
+    @GetMapping("/myLogin")
+    public @ResponseBody MembersVO myLogin(String id) {
+        return authService.myLogin(id);
+    }
 }

@@ -80,4 +80,10 @@ public class MainController {
     public String dashboard() {
         return "/page/dashboard";
     }
+
+    /** Error page. */
+    @GetMapping({"/accesscount.html"})
+    public String accesscount() {
+        return "/page/accesscount";
+    }
 }

@@ -2,8 +2,9 @@ package com.winters.be.service;
 
 import com.winters.be.db.jpa.entity.MemberEntity;
 import com.winters.be.db.jpa.repository.MemberRepository;
-import com.winters.be.db.mybatis.dao.MemberDAO;
+import com.winters.be.db.mybatis.dao.MembersDAO;
 import com.winters.be.db.mybatis.vo.MemberVO;
+import com.winters.be.db.mybatis.vo.MembersVO;
 import com.winters.be.dto.MemberReq;
 import com.winters.be.dto.MemberRes;
 import com.winters.be.dto.ResultDto;
@@ -17,7 +18,8 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
-    private final MemberDAO memberDAO;
+    private final MembersDAO memberDAO;
+    private final MembersDAO membersDAO;
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -72,6 +74,7 @@ public class AuthService {
         }
     }
 
+    /// jpa로 변경
     public ResultDto<MemberRes> login(String id, String pwd){
         Optional<MemberVO> loginMember = memberDAO.getLoginMember(id, pwd);
         if(loginMember.isPresent()) {
@@ -79,5 +82,15 @@ public class AuthService {
         }else {
             return ResultDto.ofFail("ID/Password 가 일치하지 않습니다");
         }
+    }
+
+    ////////////////Mybatis///////////////////////////////////////////////////////////////////////////////
+    public MembersVO myInsertMembers(MembersVO vo) {
+        membersDAO.insertMembers(vo);
+        return vo;
+    }
+
+    public MembersVO myLogin(String id) {
+        return membersDAO.signIn(id);
     }
 }

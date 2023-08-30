@@ -63,7 +63,7 @@ public class SecurityConfig {
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/page/403.html")
-//                .and().cors().disable().csrf().disable()
+                .and().cors().disable().csrf().disable()
         ;
         return http.build();
     }
