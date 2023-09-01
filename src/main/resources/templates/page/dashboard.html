@@ -5,15 +5,16 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{page/layouts/default_layout}">
 <head>
-    <!--Chart.js-->
-    <script th:src="@{/webjars/chart.js/2.8.0/dist/Chart.min.js}"></script>
-
     <!--DataTable-->
 <!--    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />-->
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-    <script src="/js/datatables-simple-demo.js"></script>
 </head>
 <div layout:fragment="content">
+    <!--Chart.js-->
+    <script th:src="@{/webjars/chart.js/2.8.0/dist/Chart.min.js}"></script>
+    <!--DataTable-->
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="/js/datatables-simple-demo.js"></script>
+
     <div class="container-fluid px-4">
         <h1 class="mt-4">Dashboard</h1>
         <ol class="breadcrumb mb-4">
@@ -540,12 +541,12 @@
         </div>
     </div>
 
+    <!--Chart demo-->
+    <script src="/assets/demo/chart-area-demo.js"></script>
+    <script src="/assets/demo/chart-bar-demo.js"></script>
 </div>
 
 <div layout:fragment="script">
-    <!--Chart-->
-    <script src="/assets/demo/chart-area-demo.js"></script>
-    <script src="/assets/demo/chart-bar-demo.js"></script>
 </div>
 
 

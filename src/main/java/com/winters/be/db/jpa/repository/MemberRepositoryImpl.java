@@ -12,6 +12,7 @@ import java.util.List;
 public class MemberRepositoryImpl implements MemberRepositoryQuery {
     private final JPAQueryFactory queryFactory;
 
+
     @Override
     public List<MemberEntity> selectAll() {
         return queryFactory.selectFrom(QMemberEntity.memberEntity)
