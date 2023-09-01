@@ -1,4 +1,4 @@
-package com.winters.be.page.controller;
+package com.winters.be.controller.page;
 
 import com.winters.be.db.mybatis.vo.GraphVO;
 import com.winters.be.service.ChartService;

@@ -1,4 +1,4 @@
-package com.winters.be.cms.controller;
+package com.winters.be.controller.cms;
 
 import com.winters.be.db.jpa.entity.MemberEntity;
 import com.winters.be.dto.ResultDto;

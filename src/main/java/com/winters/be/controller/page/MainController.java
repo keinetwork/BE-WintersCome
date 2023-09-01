@@ -1,4 +1,4 @@
-package com.winters.be.page;
+package com.winters.be.controller.page;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

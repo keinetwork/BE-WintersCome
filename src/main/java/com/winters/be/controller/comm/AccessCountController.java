@@ -1,4 +1,4 @@
-package com.winters.be.comm.controller;
+package com.winters.be.controller.comm;
 
 import com.winters.be.db.jpa.entity.AccessCountEntity;
 import com.winters.be.service.AccessCountService;

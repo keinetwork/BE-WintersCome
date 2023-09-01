@@ -1,4 +1,4 @@
-package com.winters.be.api.controller;
+package com.winters.be.controller.api;
 
 import com.winters.be.service.MemberService;
 import io.swagger.v3.oas.annotations.tags.Tag;

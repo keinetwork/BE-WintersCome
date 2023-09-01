@@ -1,4 +1,4 @@
-package com.winters.be.api.controller;
+package com.winters.be.controller.api;
 
 import com.winters.be.comm.WCUtil;
 import com.winters.be.dto.MemberReq;
