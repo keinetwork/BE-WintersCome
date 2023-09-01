@@ -42,4 +42,15 @@ public class ChartController {
         model.addAttribute("turtle", turtle);
         return turtle;
     }
+
+    @GetMapping("/korea.html")
+    public String korea() {
+        System.out.println("/korea.html");
+        return "/page/chart/korea";
+    }
+    @GetMapping("/seoul.html")
+    public String seoul() {
+        System.out.println("/seoul.html");
+        return "/page/chart/seoul";
+    }
 }
