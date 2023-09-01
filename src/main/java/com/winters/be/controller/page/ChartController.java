@@ -53,4 +53,10 @@ public class ChartController {
         System.out.println("/seoul.html");
         return "/page/chart/seoul";
     }
+
+    @GetMapping("/mapchart.html")
+    public String mapchart() {
+        System.out.println("/mapchart.html");
+        return "/page/chart/mapchart";
+    }
 }
