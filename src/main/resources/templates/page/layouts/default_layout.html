@@ -14,15 +14,16 @@
     <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css">
 <!--    side nav-->
     <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+</head>
+<body class="sb-nav-fixed">
     <!--content script-->
     <!--topnav-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js}"></script>
-<!--    <script th:src="@{/webjars/jquery/3.7.0/dist/jquery.min.js}"></script>-->
+    <!--    <script th:src="@{/webjars/jquery/3.7.0/dist/jquery.min.js}"></script>-->
     <!--sidenav-->
     <script th:src="@{/js/scripts.js}"></script>
-</head>
-<body class="sb-nav-fixed">
+
     <!--header fragement 사용-->
     <th:block th:replace="page/fragments/header :: headerFragment"></th:block>
 

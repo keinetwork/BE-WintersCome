@@ -43,8 +43,8 @@ spring:
     suffix: .html
     mode: HTML
     cache: false
-#    prefix: file:src/main/resources/templates/
-    prefix: classpath:/templates/
+    prefix: file:src/main/resources/templates/
+#    prefix: classpath:/templates/
   mvc:
     hidden-method:
       filter:
