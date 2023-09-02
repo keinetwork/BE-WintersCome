@@ -77,7 +77,7 @@ countTurtle.getGraph();
 //    }
 //})
 
-//datg:
+// data:
 // get param -> requestParam map
-// post JSON.stringify() -> requestBody map
+// post JSON.stringify(param) -> requestBody map
 // post param -> requestBody string
