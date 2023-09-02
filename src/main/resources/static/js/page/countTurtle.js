@@ -1,34 +1,56 @@
 
 let countTurtle = {
-	getGraph: function() {
+	transactionGetGraph: function () {
         let timeList = new Array();
         let posList = new Array();
-                    //                mb_id: "${signIn.mb_id}",
         var param = {
-                        mb_id: 'adkim',
-                        pos_type: '거북목'
-                    };
+            mb_id: 'adkim',//                mb_id: "${signIn.mb_id}",
+            pos_type: '거북목'
+        };
         console.log(JSON.stringify(param));
-        $.ajax({
-            url: '/page/chart/countTurtle.html',
-//            type: 'GET',
-//            data: param,
-            type: "POST",
-            data: JSON.stringify(param),
-            contentType: "application/json; charset=utf-8",
-            dataType: 'json',
-            success: function(data){
-                console.log(data);
-                 console.log(data[0].pos_count);
-                // 그래프로 나타낼 자료 리스트에 담기
-                for(let i=0; i<data.length; i++){
-                    timeList.push(data[i].pos_time);
-                    posList.push(data[i].pos_count);
-                }
-                 console.log(timeList);
-                 console.log(posList);
-                // 그래프
-                new Chart(document.getElementById("line-chart"),{
+//         $.ajax({
+//             url: '/page/chart/countTurtle.html',
+// //            type: 'GET',
+// //            data: param,
+//             type: "POST",
+//             data: JSON.stringify(param),
+//             contentType: "application/json; charset=utf-8",
+//             dataType: 'json',
+//             success: function(data){
+//                 success(data);
+//             },
+//             error: function(){
+//                 alert("실패");
+//             }
+//         }) // ajax
+//         axios.get("/page/chart/countTurtle.html", {params: param})
+//             await axios.post("/page/chart/countTurtle.html?mb_id=" + param.mb_id + "&pos_type=" + param.pos_type) // request param
+            axios.post("/page/chart/countTurtle.html", param)    // request body(json)
+            .then(function (response) {
+                console.log(response);
+                success(response.data);
+            }).catch(function (error) {
+                console.log(error);
+            }).finally(function () {
+                console.log("완료");
+            });
+
+        function success(data) {
+            console.log(data);
+            console.log(data[0].pos_count);
+            // 그래프로 나타낼 자료 리스트에 담기
+            for (let i = 0; i < data.length; i++) {
+                timeList.push(data[i].pos_time);
+                posList.push(data[i].pos_count);
+            }
+            console.log(timeList);
+            console.log(posList);
+            drowChart(timeList, posList);
+        }
+
+        function drowChart(timeList, posList) {
+            // 그래프
+            new Chart(document.getElementById("line-chart"), {
                 type: 'line',
                 data: {
                     labels: timeList, // X출
@@ -45,15 +67,13 @@ let countTurtle = {
                         text: '추간 거북목'
                     }
                 }
-                }); // 그래프
-            },
-            error: function(){
-                alert("실패");
-            }
-        }) // ajax
-    } // getGraph
+            }); // 그래프
+        }
+    }, // getGraph
+
+
 }
-countTurtle.getGraph();
+countTurtle.transactionGetGraph();
 
 //$.ajax({
 //    type : 'post',           // 타입 (get, post, put 등등)

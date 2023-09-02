@@ -33,11 +33,21 @@ public class ChartController {
     }
 
     @PostMapping(value = {"/countTurtle.html"})
-    public @ResponseBody List<GraphVO> PostCountTurtle(@RequestBody(required = false) Map<String,String> reqBody, Model model) {
-        System.out.println(reqBody.toString());
+    public @ResponseBody List<GraphVO> PostCountTurtle(
+            @RequestParam(required = false) Map<String,String> reqParam,
+            @RequestBody(required = false) Map<String,String> reqBody,
+            Model model) {
         GraphVO vo = new GraphVO();
-        vo.setMb_id(reqBody.get("mb_id"));
-        vo.setPos_type(reqBody.get("pos_type"));
+        if( reqBody != null ){
+            System.out.println("/countTurtle.html RequestBody");
+            vo.setMb_id(reqBody.get("mb_id"));
+            vo.setPos_type(reqBody.get("pos_type"));
+        } else {
+            System.out.println("/countTurtle.html RequestParam");
+            vo.setMb_id(reqParam.get("mb_id"));
+            vo.setPos_type(reqParam.get("pos_type"));
+        }
+
         List<GraphVO> turtle = chartService.countTurtle(vo);
         model.addAttribute("turtle", turtle);
         return turtle;
