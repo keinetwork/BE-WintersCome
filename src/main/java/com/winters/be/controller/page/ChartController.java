@@ -63,10 +63,38 @@ public class ChartController {
         System.out.println("/seoul.html");
         return "/page/chart/seoul";
     }
+    @GetMapping("/states")
+    public String states() {
+        System.out.println("/states");
+        return "/page/chart/states";
+    }
 
     @GetMapping("/mapchart.html")
     public String mapchart() {
         System.out.println("/mapchart.html");
         return "/page/chart/mapchart";
     }
+
+    @GetMapping("/d3cdn")
+    public String d3cdn() {
+        System.out.println("/d3cdn");
+        return "/page/chart/d3cdn";
+    }
+    @GetMapping("/d3geo")
+    public String d3geo() {
+        System.out.println("/d3geo");
+        return "/page/chart/d3geo";
+    }
+
+    @GetMapping("/d3zoom")
+    public String d3zoom() {
+        System.out.println("/d3zoom");
+        return "/page/chart/d3zoom";
+    }
+    @GetMapping("/d3polygon")
+    public String d3polygon() {
+        System.out.println("/d3polygon");
+        return "/page/chart/d3polygon";
+    }
+
 }
